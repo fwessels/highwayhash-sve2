@@ -34,14 +34,26 @@ int main()
 
     update_arm64_sve2(state, msg, 64);
 
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[0], state[1]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[2], state[3]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[4], state[5]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[6], state[7]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[8], state[9]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[10], state[11]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[12], state[13]);
-    printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[14], state[15]);
+    if (state[0] == 0xea006216335db212 && state[1] == 0x97280efedaccd722 &&
+        state[2] == 0x2a0ba13d83848de6 && state[3] == 0x476fe817e850c8cd &&
+        state[4] == 0x5b8176dd6d555cf6 && state[5] == 0x5740be93095fd2b5 &&
+        state[6] == 0xda9d392c1fd04836 && state[7] == 0x28398f8f4d922993 &&
+        state[8] == 0x41a1794ac4aec11e && state[9] == 0x41123afc4b6d0e35 &&
+        state[10] == 0x761f6fbe30a051ce && state[11] == 0x6a4afc2b722e4155 &&
+        state[12] == 0x3f0887c550d61850 && state[13] == 0x3368c4779ce6c2c8 &&
+        state[14] == 0xd1f892c21e69b968 && state[15] == 0x974e980803544d90) {
+        printf("TEST PASSED\n");
+    } else {
+        printf("TEST FAILED\n\n");
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[0], state[1]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[2], state[3]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[4], state[5]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[6], state[7]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[8], state[9]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[10], state[11]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[12], state[13]);
+        printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[14], state[15]);
+    }
 
     return 0;
 }
