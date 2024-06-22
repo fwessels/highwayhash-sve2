@@ -1,5 +1,21 @@
 
     .text
+
+    .global get_vector_length
+    .type get_vector_length, %function
+
+    vlPtr      .req x0
+    plPtr      .req x1
+
+get_vector_length:
+    mov   x2, #0
+    addvl x2, x2, #1
+    str   x2, [vlPtr]
+    mov   x3, #0
+    addpl x3, x3, #1
+    str   x3, [plPtr]
+    ret
+
     .global update_arm64_sve2
     .type update_arm64_sve2, %function
 
@@ -14,7 +30,7 @@ update_arm64_sve2:
     ld1d  z3.d, p1/z, [x0, #2, MUL VL]
     ld1d  z4.d, p1/z, [x0, #3, MUL VL]
     subs  x2, x2, #32
-    BMI  .complete_sve2
+    b.mi  .complete_sve2
 
     adr   x3, .zipper_merge_sve2
     ld1d  z5.d, p1/z, [x3]
