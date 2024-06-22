@@ -8,6 +8,13 @@
 
 int main()
 {
+    uint64_t vl, pl;
+    get_vector_length(&vl, &pl);
+    if (vl != 32) {
+        printf("TEST SKIPPED -- vector length (%d) unequal to 32\n", vl);
+        return -1;
+    }
+
     uint64_t state[16];
 	state[0] = 0x0102030405060708;
 	state[1] = 0x090a0b0c0d0e0f10;
@@ -43,6 +50,7 @@ int main()
         state[12] == 0x3f0887c550d61850 && state[13] == 0x3368c4779ce6c2c8 &&
         state[14] == 0xd1f892c21e69b968 && state[15] == 0x974e980803544d90) {
         printf("TEST PASSED\n");
+        return 0;
     } else {
         printf("TEST FAILED\n\n");
         printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[0], state[1]);
@@ -53,7 +61,6 @@ int main()
         printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[10], state[11]);
         printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[12], state[13]);
         printf("%#018" PRIx64 " - %#018" PRIx64 "\n", state[14], state[15]);
+        return -1;
     }
-
-    return 0;
 }
